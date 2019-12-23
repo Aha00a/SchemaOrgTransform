@@ -1,0 +1,19 @@
+{
+  "name": "schemaorgtransform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aha00a/SchemaOrgTransform.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aha00a/SchemaOrgTransform/issues"
+  },
+  "homepage": "https://github.com/Aha00a/SchemaOrgTransform#readme"
+}
