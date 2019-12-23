@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Aha00a/SchemaOrgTransform#readme",
   "dependencies": {
-    "deepdash": "^4.4.2"
+    "deepdash": "^4.4.2",
+    "fs-extra": "^8.1.0"
   }
 }
