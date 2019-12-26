@@ -39,7 +39,7 @@ const traversePath = async (path, callback) => {
 
                 return v['@id'];
             });
-            const c2 = mapRecursive.mapRecursiveKey(c1, v => v.replace(/^(@|rdfs:)/, ""));
+            const c2 = mapRecursive.mapRecursiveKey(c1, v => v.replace(/^(@|rdfs:|http:\/\/schema.org\/)/, ""));
             const json = JSON.stringify(c2, null, 4);
             await fse.writeFile(convertPath(f), json, 'utf-8')
         }
