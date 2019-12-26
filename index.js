@@ -15,20 +15,6 @@ const traversePath = async (path, callback) => {
 (async () => {
     await fse.ensureDir('transformed');
 
-    const convertObjectOnlyHaveAtIdToString = v => {
-        if (typeof v !== 'object')
-            return v;
-
-        const keys = Object.keys(v);
-        if (keys.length !== 1)
-            return v;
-
-        if (keys[0] !== '@id')
-            return v;
-
-        return v['@id'];
-    };
-
     function convertPath(f) {
         return f.replace(/^original/, 'transformed');
     }
@@ -39,11 +25,22 @@ const traversePath = async (path, callback) => {
         },
         onFile: async f => {
             const content = await fse.readFile(f, 'utf-8');
-            const v = mapRecursive.mapRecursiveKey(mapRecursive.mapRecursive(
-                JSON.parse(content),
-                convertObjectOnlyHaveAtIdToString
-            ), v => v.replace(/^(@|rdfs:)/, ""));
-            const json = JSON.stringify(v, null, 4);
+
+            const c1 = mapRecursive.mapRecursive(JSON.parse(content), v => {
+                if (typeof v !== 'object')
+                    return v;
+
+                const keys = Object.keys(v);
+                if (keys.length !== 1)
+                    return v;
+
+                if (keys[0] !== '@id')
+                    return v;
+
+                return v['@id'];
+            });
+            const c2 = mapRecursive.mapRecursiveKey(c1, v => v.replace(/^(@|rdfs:)/, ""));
+            const json = JSON.stringify(c2, null, 4);
             await fse.writeFile(convertPath(f), json, 'utf-8')
         }
     });
