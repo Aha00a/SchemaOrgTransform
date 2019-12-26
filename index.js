@@ -39,10 +39,10 @@ const traversePath = async (path, callback) => {
         },
         onFile: async f => {
             const content = await fse.readFile(f, 'utf-8');
-            var v = mapRecursive.mapRecursive(
+            const v = mapRecursive.mapRecursiveKey(mapRecursive.mapRecursive(
                 JSON.parse(content),
                 convertObjectOnlyHaveAtIdToString
-            );
+            ), v => v.replace(/^(@|rdfs:)/, ""));
             const json = JSON.stringify(v, null, 4);
             await fse.writeFile(convertPath(f), json, 'utf-8')
         }
