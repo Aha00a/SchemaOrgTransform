@@ -39,8 +39,8 @@ const traversePath = async (path, callback) => {
 
                 return v['@id'];
             });
-            const c2 = mapRecursive.mapRecursiveKey( c1, v => v.replace(/^(@|rdf:|rdfs:|http:\/\/schema.org\/)/, ""));
-            const c3 = mapRecursive.mapRecursiveLeaf(c2, v => v.replace(/^(@|rdf:|rdfs:|http:\/\/schema.org\/)/, ""));
+            const c2 = mapRecursive.mapRecursiveKey( c1, v => v.replace(/^(@|rdf:|rdfs:|schema:|http:\/\/schema.org\/)/, ""));
+            const c3 = mapRecursive.mapRecursiveLeaf(c2, v => v.replace(/^(@|rdf:|rdfs:|schema:|http:\/\/schema.org\/)/, ""));
             const json = JSON.stringify(c3, null, 4);
             await fse.writeFile(convertPath(f), json, 'utf-8')
         }
