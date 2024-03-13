@@ -54,6 +54,10 @@ const traversePath = async (path, callback) => {
             pathTree: 'transformed/14.0/tree.jsonld',
             pathTreePruned: 'transformed/14.0/tree.pruned.jsonld',
         },
+        {
+            pathTree: 'transformed/26.0/tree.jsonld',
+            pathTreePruned: 'transformed/26.0/tree.pruned.jsonld',
+        },
     ].reduce(async (a, v) => {
         await a;
         const {pathTree, pathTreePruned } = v;
